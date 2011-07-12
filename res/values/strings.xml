@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Somat SMS Sender</string>
+    <string name="label_apikey">API Key:</string>
+    <string name="label_destination">Destination:</string>
+    <string name="label_message">Message:</string>
+    <string name="label_send">Send</string>
+    <string name="label_test_apikey_button">Test API Key</string>
+</resources>
