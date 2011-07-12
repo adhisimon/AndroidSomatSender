@@ -28,7 +28,7 @@ public class SomatSenderActivity extends Activity  implements Runnable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
     }
-    
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

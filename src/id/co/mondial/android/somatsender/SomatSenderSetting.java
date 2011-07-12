@@ -22,7 +22,8 @@ public class SomatSenderSetting extends Activity {
         
         apikeyEditText = (EditText)findViewById(R.id.apikey);
         apikeyEditText.setText(apikey);
-    }
+
+	}
 	
 	@Override
 	public void onStop() {
@@ -35,10 +36,8 @@ public class SomatSenderSetting extends Activity {
 		
 		apikeyEditText = (EditText)findViewById(R.id.apikey);
         apikey = apikeyEditText.getText().toString();
-        
 		editor.putString("apikey", apikey);
 		editor.commit();
 	}
-	
 	
 }

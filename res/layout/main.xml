@@ -13,7 +13,11 @@
 	<EditText
 	    android:id="@+id/destination"
 	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"/>
+	    android:layout_height="wrap_content"
+   	    android:imeOptions="actionNext"
+		android:phoneNumber="true"
+	    android:singleLine="true"	    
+	/>
 	<TextView  
 		android:id="@+id/label_message"
 	    android:layout_width="fill_parent" 
@@ -24,6 +28,8 @@
 	    android:id="@+id/message"
 	    android:layout_width="fill_parent"
 	    android:layout_height="40pt"
+	    android:imeOptions="actionDone"
+	    android:gravity="top"
 	/>
 	<Button
 		android:id="@+id/send"
