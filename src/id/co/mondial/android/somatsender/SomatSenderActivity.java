@@ -1,5 +1,13 @@
 package id.co.mondial.android.somatsender;
 
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HTTP;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -41,6 +49,12 @@ public class SomatSenderActivity extends Activity {
 
     
     public void sendSms(View view) {
+        Toast.makeText(
+    			SomatSenderActivity.this, 
+    			"sending message",
+    			Toast.LENGTH_SHORT
+    		).show();
+
     	EditText _destination = (EditText)findViewById(R.id.destination);
     	String destination = _destination.getText().toString();
     	
@@ -50,10 +64,39 @@ public class SomatSenderActivity extends Activity {
     	SharedPreferences settings = getSharedPreferences(SomatSenderSetting.PREFS_NAME, 0);
         String apikey = settings.getString("apikey", "");
     	
-    	Toast.makeText(
+        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+        xml +="<smses>";
+		xml += "<apikey>" + apikey + "</apikey>";
+		xml += "<sms>";
+		xml += "<destination>";
+		xml += "<to>" + destination + "</to>";
+		xml += "</destination>";
+		xml += "<message>" + message + "</message>";
+		xml += "</sms>";
+		xml += "</smses>";
+
+		HttpClient httpclient = new DefaultHttpClient();
+		
+		String url = "http://sms.mondial.co.id/rest/v3/sms.php";
+		HttpPost postmethod = new HttpPost(url);
+		try {
+			StringEntity se = new StringEntity(xml,HTTP.UTF_8);
+			postmethod.setEntity(se);
+			HttpResponse response = httpclient.execute(postmethod);
+		} catch (Exception e) {
+	        Toast.makeText(
+	    			SomatSenderActivity.this, 
+	    			"error",
+	    			Toast.LENGTH_SHORT
+	    		).show();
+
+		}
+		
+        Toast.makeText(
     			SomatSenderActivity.this, 
-    			"Sending to " + destination,
+    			"message has been sent",
     			Toast.LENGTH_SHORT
     		).show();
+    	
     }
 }
