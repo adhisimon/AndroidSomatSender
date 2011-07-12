@@ -2,13 +2,13 @@
 <menu
   xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/setting" 
-    	android:title="Setting"
-    	android:icon="@drawable/options" 
+    	android:title="Setting" 
+    	android:icon="@drawable/options"
     />
     
     <item android:id="@+id/about" 
     	android:title="About"
-    	android:icon="@drawable/s" 
+    	android:icon="@android:drawable/ic_menu_info_details" 
     />
     
 </menu>
