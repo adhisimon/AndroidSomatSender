@@ -15,6 +15,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SomatSenderSetting"></activity>
+        <activity android:name=".SomatSenderAbout"></activity>
 
     </application>
 </manifest>

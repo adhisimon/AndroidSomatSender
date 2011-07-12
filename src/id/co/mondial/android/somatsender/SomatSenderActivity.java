@@ -39,12 +39,21 @@ public class SomatSenderActivity extends Activity  implements Runnable {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case R.id.setting:
-                Intent i = new Intent(this, SomatSenderSetting.class);
-                startActivity(i);                        
-                
-                return true;
-        default:
+        	case R.id.setting:
+            
+	        	Intent settingIntent = new Intent(this, SomatSenderSetting.class);
+	            startActivity(settingIntent);                        
+	            
+	            return true;
+	        
+        	case R.id.about:
+	        	
+	        	Intent aboutIntent = new Intent(this, SomatSenderAbout.class);
+	        	startActivity(aboutIntent);
+	
+	        	return true;
+
+	        default:
                 return super.onOptionsItemSelected(item);
         }
     }
