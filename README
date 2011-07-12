@@ -3,7 +3,11 @@ Android SOMAT Sender
 
 Android app to send SMS via SOMAT web service.
 
+You can download binary build at:
 https://market.android.com/details?id=id.co.mondial.android.somatsender&feature=order_history
+
+Source code can be cloned on:
+https://github.com/adhisimon/AndroidSomatSender
 
 LICENSE
 -------
