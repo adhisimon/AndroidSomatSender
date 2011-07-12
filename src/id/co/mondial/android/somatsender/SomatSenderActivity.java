@@ -1,7 +1,6 @@
 package id.co.mondial.android.somatsender;
 
 
-import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -82,7 +81,7 @@ public class SomatSenderActivity extends Activity {
 		try {
 			StringEntity se = new StringEntity(xml,HTTP.UTF_8);
 			postmethod.setEntity(se);
-			HttpResponse response = httpclient.execute(postmethod);
+			httpclient.execute(postmethod);
 		} catch (Exception e) {
 	        Toast.makeText(
 	    			SomatSenderActivity.this, 
