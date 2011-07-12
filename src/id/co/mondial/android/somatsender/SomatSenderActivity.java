@@ -1,6 +1,8 @@
 package id.co.mondial.android.somatsender;
 
 
+import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -51,7 +53,7 @@ public class SomatSenderActivity extends Activity {
         Toast.makeText(
     			SomatSenderActivity.this, 
     			"sending message",
-    			Toast.LENGTH_SHORT
+    			Toast.LENGTH_LONG
     		).show();
 
     	EditText _destination = (EditText)findViewById(R.id.destination);
@@ -75,20 +77,34 @@ public class SomatSenderActivity extends Activity {
 		xml += "</smses>";
 
 		HttpClient httpclient = new DefaultHttpClient();
+		HttpResponse response = null;
 		
 		String url = "http://sms.mondial.co.id/rest/v3/sms.php";
 		HttpPost postmethod = new HttpPost(url);
+		
 		try {
+			
 			StringEntity se = new StringEntity(xml,HTTP.UTF_8);
 			postmethod.setEntity(se);
-			httpclient.execute(postmethod);
+			response = httpclient.execute(postmethod);
+			
 		} catch (Exception e) {
+			
 	        Toast.makeText(
 	    			SomatSenderActivity.this, 
 	    			"error",
 	    			Toast.LENGTH_SHORT
 	    		).show();
 
+		} finally {
+			
+			StatusLine statusLine = response.getStatusLine();
+			Toast.makeText(
+	    			SomatSenderActivity.this, 
+	    			statusLine.getStatusCode() + " " + statusLine.getReasonPhrase(),
+	    			Toast.LENGTH_SHORT
+	    		).show();
+	
 		}
 		
         Toast.makeText(
