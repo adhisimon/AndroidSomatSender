@@ -6,4 +6,9 @@
     	android:icon="@drawable/options" 
     />
     
+    <item android:id="@+id/about" 
+    	android:title="About"
+    	android:icon="@drawable/s" 
+    />
+    
 </menu>
