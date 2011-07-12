@@ -20,7 +20,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class SomatSenderActivity extends Activity {
+public class SomatSenderActivity extends Activity  implements Runnable {
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,12 +51,27 @@ public class SomatSenderActivity extends Activity {
 
     
     public void sendSms(View view) {
-        Toast.makeText(
-    			SomatSenderActivity.this, 
-    			"sending message",
-    			Toast.LENGTH_LONG
-    		).show();
+    	Thread thread = new Thread(this);
+    	thread.start();
+    	
+    }
+    
+    private void showToast(String msg) {
+    	final String _msg = msg;
+    	runOnUiThread(new Runnable() {
+    		public void run() {
+	            Toast.makeText(
+						SomatSenderActivity.this, 
+						_msg,
+						Toast.LENGTH_SHORT
+					).show();
+    		}
+    	});
 
+    }
+    
+    public void run() {
+    	showToast("Sending message");
     	EditText _destination = (EditText)findViewById(R.id.destination);
     	String destination = _destination.getText().toString();
     	
@@ -87,31 +103,13 @@ public class SomatSenderActivity extends Activity {
 			StringEntity se = new StringEntity(xml,HTTP.UTF_8);
 			postmethod.setEntity(se);
 			response = httpclient.execute(postmethod);
-			
-		} catch (Exception e) {
-			
-	        Toast.makeText(
-	    			SomatSenderActivity.this, 
-	    			"error",
-	    			Toast.LENGTH_SHORT
-	    		).show();
-
-		} finally {
-			
 			StatusLine statusLine = response.getStatusLine();
-			Toast.makeText(
-	    			SomatSenderActivity.this, 
-	    			statusLine.getStatusCode() + " " + statusLine.getReasonPhrase(),
-	    			Toast.LENGTH_SHORT
-	    		).show();
-	
-		}
-		
-        Toast.makeText(
-    			SomatSenderActivity.this, 
-    			"message has been sent",
-    			Toast.LENGTH_SHORT
-    		).show();
-    	
+			showToast("Message sent");
+			showToast(statusLine.getStatusCode() + " " + statusLine.getReasonPhrase());
+		} catch (Exception e) {
+			showToast("Send failed");
+		}	
+
     }
+    
 }
