@@ -3,9 +3,7 @@ package id.co.mondial.android.somatsender;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class SomatSenderSetting extends Activity {
 	
@@ -24,10 +22,6 @@ public class SomatSenderSetting extends Activity {
         
         apikeyEditText = (EditText)findViewById(R.id.apikey);
         apikeyEditText.setText(apikey);
-    }
-	
-	public void testApikey(View view) {
-    	Toast.makeText(SomatSenderSetting.this, "test", Toast.LENGTH_SHORT).show();
     }
 	
 	@Override
