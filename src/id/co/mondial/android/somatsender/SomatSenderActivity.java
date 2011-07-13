@@ -111,6 +111,7 @@ public class SomatSenderActivity extends Activity  implements Runnable {
 			
 			StringEntity se = new StringEntity(xml,HTTP.UTF_8);
 			postmethod.setEntity(se);
+			postmethod.setHeader("User-Agent", "Somat Sender Android Client");
 			response = httpclient.execute(postmethod);
 			StatusLine statusLine = response.getStatusLine();
 			showToast("Message sent");
