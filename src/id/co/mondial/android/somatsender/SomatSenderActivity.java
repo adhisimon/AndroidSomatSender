@@ -117,7 +117,7 @@ public class SomatSenderActivity extends Activity  implements Runnable {
 			
 			StringEntity se = new StringEntity(xml,HTTP.UTF_8);
 			postmethod.setEntity(se);
-			postmethod.setHeader("User-Agent", "Somat Sender Android Client");
+			postmethod.setHeader("User-Agent", "Somat Sender Android Client/v" + Integer.toString(getVersion()));
 			response = httpclient.execute(postmethod);
 			StatusLine statusLine = response.getStatusLine();
 			showToast("Message sent");
@@ -126,6 +126,17 @@ public class SomatSenderActivity extends Activity  implements Runnable {
 			showToast("Send failed");
 		}	
 
+    }
+
+    public int getVersion() {
+        int version = 0;
+        try {
+        	version = getPackageManager().getPackageInfo(getApplicationInfo().packageName, 0).versionCode;
+        }
+        catch(Exception e) {
+        	
+        }
+        return version;
     }
     
 }

@@ -66,6 +66,7 @@ public class SomatSenderSetting extends Activity implements Runnable {
 		try {
 			String url = "http://sms.mondial.co.id/rest/v4/check_apikey.php?apikey=" + apikey;
 			HttpGet getmethod = new HttpGet(url);
+			getmethod.setHeader("User-Agent", "Somat Sender Android Client/v" + Integer.toString(getVersion()));
 
 			response = httpclient.execute(getmethod);
 
@@ -110,4 +111,15 @@ public class SomatSenderSetting extends Activity implements Runnable {
     	showToast(msg, Toast.LENGTH_SHORT);
     }
 	
+    public int getVersion() {
+        int version = 0;
+        try {
+        	version = getPackageManager().getPackageInfo(getApplicationInfo().packageName, 0).versionCode;
+        }
+        catch(Exception e) {
+        	
+        }
+        return version;
+    }
+
 }
