@@ -65,18 +65,24 @@ public class SomatSenderActivity extends Activity  implements Runnable {
     	
     }
     
-    private void showToast(String msg) {
+    private void showToast(String msg, int length) {
     	final String _msg = msg;
+    	final int _length = length;
+
     	runOnUiThread(new Runnable() {
     		public void run() {
 	            Toast.makeText(
 						SomatSenderActivity.this, 
 						_msg,
-						Toast.LENGTH_SHORT
+						_length
 					).show();
     		}
     	});
 
+    }
+
+    private void showToast(String msg) {
+    	showToast(msg, Toast.LENGTH_SHORT);
     }
     
     public void run() {
