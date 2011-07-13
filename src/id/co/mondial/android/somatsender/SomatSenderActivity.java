@@ -104,7 +104,7 @@ public class SomatSenderActivity extends Activity  implements Runnable {
 		HttpClient httpclient = new DefaultHttpClient();
 		HttpResponse response = null;
 		
-		String url = "http://sms.mondial.co.id/rest/v3/sms.php";
+		String url = "http://sms.mondial.co.id/rest/v4/sms.php";
 		HttpPost postmethod = new HttpPost(url);
 		
 		try {
